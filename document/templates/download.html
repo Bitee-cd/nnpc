@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <!-- Page Header -->
+      <h1 class="mb-4">Download Results</h1>
+
+      <!-- Instructions -->
+      <p>Click the links below to download the files:</p>
+
+      <!-- File Links List -->
+      <ul class="list-group">
+        <li class="list-group-item">
+          <a href="{% url 'download_duplicates' %}" class="btn btn-link"
+            >Download Duplicates File</a
+          >
+        </li>
+        <li class="list-group-item">
+          <a href="{% url 'download_non_duplicates' %}" class="btn btn-link"
+            >Download Non-Duplicates File</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

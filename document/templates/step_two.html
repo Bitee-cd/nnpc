@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-12">
+      <!-- Navigation Links -->
+      <div class="d-flex justify-content-between mb-3">
+        <a href="{% url 'index' %}" class="btn btn-secondary">Back</a>
+        <a href="{% url 'step_three' %}" class="btn btn-primary">Next</a>
+      </div>
+
+      <!-- Form Section -->
+      <form method="post" enctype="multipart/form-data" class="form-group">
+        <h3 class="mb-4">STEP TWO: COMPANY FILE</h3>
+        {% csrf_token %}
+
+        <div class="mb-3">
+          {% if headers %}
+          <!-- Dropdown to select company file -->
+          <label for="header-select" class="form-label"
+            >Select the company file:</label
+          >
+          <select name="selected_header" id="header-select" class="form-select">
+            {% for header in headers %}
+            <option value="{{ header }}">{{ header }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="btn btn-success mt-3">Submit</button>
+          {% else %}
+          <!-- File upload input -->
+          <label for="file-upload" class="form-label">Upload a file:</label>
+          <input
+            type="file"
+            name="myfile"
+            id="file-upload"
+            accept=".csv"
+            class="form-control"
+          />
+          <button type="submit" class="btn btn-primary mt-3">
+            Upload File
+          </button>
+          {% endif %}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
