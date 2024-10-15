@@ -108,13 +108,12 @@ def generate(request):
     
     step1_file = request.session.get('step1_file')
     step1_header = request.session.get('step1_header')
-    step2_file = request.session.get('step2_file')
+    step2_file = request.session.get('step2_file') 
     step2_header = request.session.get('step2_header')
     selected_option = request.session.get('selected_option')
     start_date = request.session.get('start_date')
     
-    step1_file_url =os.path.join(settings.MEDIA_ROOT, step1_file)
-    step2_file_url =os.path.join(settings.MEDIA_ROOT, step2_file)
+  
     details = {
                 "step1_file":step1_file,
                 "step1_header":step1_header,
@@ -124,11 +123,11 @@ def generate(request):
                 "start_date":start_date
                 }
     errors = []
-    if not step1_file or not os.path.exists(step1_file_url):
+    if not step1_file or not os.path.exists(os.path.join(settings.MEDIA_ROOT, step1_file)):
         errors.append("Manifest file is missing.")
     if not step1_header:
         errors.append("Manifest header is missing.")
-    if not step2_file or not os.path.exists(step2_file_url):
+    if not step2_file or not os.path.exists(os.path.join(settings.MEDIA_ROOT, step2_file)):
         errors.append("Company file is missing.")
     if not step2_header:
         errors.append("Company header is missing.")
